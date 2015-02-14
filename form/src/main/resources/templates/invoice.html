@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Simple invoice form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Faktura</h1>
+    <form action="#" th:action="@{/invoice}" th:object="${invoice}" method="post">
+    	<p>Numer: <input type="text" th:field="*{numer}" /></p>
+        <p>Data wystawienia: <input type="date" th:field="*{dataWystawienia}" /></p>
+        <p>Sprzedawca</p>
+        <p>Nazwa: <input type="text" th:field="*{sprzedawca.name}" /></p>
+        <p>Adres: <input type="text" th:field="*{sprzedawca.address}" /></p>
+        <p>NIP: <input type="text" th:field="*{sprzedawca.nip}" /></p>
+        <p>Nabywca</p>
+        <p>Nazwa: <input type="text" th:field="*{nabywca.name}" /></p>
+        <p>Adres: <input type="text" th:field="*{nabywca.address}" /></p>
+        <p>NIP: <input type="text" th:field="*{nabywca.nip}" /></p>
+        <p></p>
+        <p>Nazwa towaru/uslugi: <input type="text" th:field="*{nazwaTowarUsluga}" /></p>
+        <p>Ilosc: <input type="text" th:field="*{ilosc}" /></p>
+        <p>Jednostka: 
+        	<select name="selectUnit" th:field="*{jednostka}" > 
+            	<option th:each="sopt:${getUnits()}" 
+           			th:value="${sopt}" th:text="${sopt}">--
+           		</option>
+            </select></p>
+        <p>Cena jednostki: <input type="text" th:field="*{cenaJednostki}" /></p>
+        <p>Stawka VAT: 
+        	<select name="selectVat" th:field="*{stawkaVat}" > 
+            	<option th:each="sopt:${getVATRates()}" 
+           			th:value="${sopt}" th:text="${sopt}">--
+           		</option>
+            </select></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
