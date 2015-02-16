@@ -13,12 +13,14 @@ public class SubmitController {
     @RequestMapping(value="/invoice", method=RequestMethod.GET)
     public String greetingForm(Model model) {
         model.addAttribute("invoice", new Invoice());
-        return "greeting";
+        return "invoice";
     }
 
     @RequestMapping(value="/invoice", method=RequestMethod.POST)
     public String formSubmit(@ModelAttribute Invoice invoice, Model model) {
         model.addAttribute("invoice", invoice);
+        //tu planowałem obsłużyć dodawanie danych z obietku typu Invoice do bazy danych po uprzedniej konfiguracji
+        //hibernate'a ale zatrzymał mnie problem z konfiguracją Tomcata.
         return "invoice";
     }
 
